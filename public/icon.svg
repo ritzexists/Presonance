@@ -1,0 +1,157 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#030712"/>
+      <stop offset="50%" stop-color="#0b1329"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+
+    <linearGradient id="skinOutlineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="50%" stop-color="#818cf8"/>
+      <stop offset="100%" stop-color="#c084fc"/>
+    </linearGradient>
+
+    <linearGradient id="larynxGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="50%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="strongGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="16" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background container with rounded corners -->
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)"/>
+  <rect width="504" height="504" x="4" y="4" rx="108" fill="none" stroke="#1e293b" stroke-width="4"/>
+
+  <!-- Subtle Acoustic Resonance Concentric Rings from Larynx Center (cx: 240, cy: 320) -->
+  <circle cx="245" cy="315" r="160" fill="none" stroke="#38bdf8" stroke-opacity="0.1" stroke-width="2" stroke-dasharray="6 8"/>
+  <circle cx="245" cy="315" r="125" fill="none" stroke="#818cf8" stroke-opacity="0.15" stroke-width="2"/>
+  <circle cx="245" cy="315" r="90" fill="none" stroke="#c084fc" stroke-opacity="0.2" stroke-width="2" stroke-dasharray="4 6"/>
+  <circle cx="245" cy="315" r="55" fill="none" stroke="#06b6d4" stroke-opacity="0.3" stroke-width="2"/>
+
+  <!-- Profile Silhouette of the Bottom Half of Face & Neck -->
+  <!-- Nose base -> Philtrum -> Upper Lip -> Lower Lip -> Chin -> Jawline -> Throat/Larynx -> Neck Base -->
+  <path
+    d="M 120 120
+       C 135 145, 145 155, 155 168
+       C 148 178, 145 185, 150 195
+       C 155 205, 168 208, 175 210
+       C 165 218, 158 226, 164 238
+       C 170 248, 182 250, 180 262
+       C 176 278, 162 290, 160 300
+       C 158 312, 172 322, 190 326
+       C 220 332, 235 342, 240 365
+       C 246 392, 242 418, 240 440
+       L 360 440
+       C 358 395, 355 350, 350 310
+       C 345 270, 335 235, 325 210
+       C 305 160, 275 140, 240 120
+       Z"
+    fill="#0f172a"
+    fill-opacity="0.6"
+  />
+
+  <!-- Crisp Glowing Profile Line: Lips, Chin, Throat/Larynx, Base of Neck -->
+  <path
+    d="M 125 125
+       C 140 148, 152 158, 160 170
+       C 152 180, 150 188, 156 198
+       C 162 208, 174 210, 180 212
+       C 168 220, 162 228, 168 240
+       C 174 250, 186 252, 184 264
+       C 180 280, 164 292, 162 304
+       C 160 316, 174 326, 195 330
+       C 225 336, 238 348, 244 370
+       C 250 395, 246 418, 245 440"
+    fill="none"
+    stroke="url(#skinOutlineGrad)"
+    stroke-width="7"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    filter="url(#softGlow)"
+  />
+
+  <!-- Jawline contour sweep up toward ear/mastoid -->
+  <path
+    d="M 184 316
+       C 215 305, 255 285, 285 255
+       C 305 235, 318 210, 325 185"
+    fill="none"
+    stroke="#475569"
+    stroke-width="3"
+    stroke-linecap="round"
+    stroke-dasharray="3 5"
+    opacity="0.6"
+  />
+
+  <!-- Back of Neck line -->
+  <path
+    d="M 320 220
+       C 335 255, 345 300, 350 350
+       C 354 390, 356 420, 358 440"
+    fill="none"
+    stroke="url(#skinOutlineGrad)"
+    stroke-width="5"
+    stroke-linecap="round"
+    opacity="0.75"
+    filter="url(#softGlow)"
+  />
+
+  <!-- Larynx / Vocal Folds Acoustic Core (Voice Box Energy Node) -->
+  <g filter="url(#strongGlow)">
+    <circle cx="242" cy="340" r="14" fill="#06b6d4"/>
+    <circle cx="242" cy="340" r="8" fill="#ffffff"/>
+  </g>
+
+  <!-- Soundwave Arcs Emanating from the Vocal Tract & Larynx -->
+  <path
+    d="M 270 320 Q 285 340 270 360"
+    fill="none"
+    stroke="#38bdf8"
+    stroke-width="4"
+    stroke-linecap="round"
+    filter="url(#softGlow)"
+  />
+  <path
+    d="M 290 305 Q 315 340 290 375"
+    fill="none"
+    stroke="#818cf8"
+    stroke-width="4"
+    stroke-linecap="round"
+    filter="url(#softGlow)"
+  />
+  <path
+    d="M 312 290 Q 345 340 312 390"
+    fill="none"
+    stroke="#c084fc"
+    stroke-width="4"
+    stroke-linecap="round"
+    filter="url(#softGlow)"
+  />
+
+  <!-- Formant / Vocal Tract Resonance Beam (Mouth opening radiation) -->
+  <path
+    d="M 195 210 C 230 205, 270 200, 300 195"
+    fill="none"
+    stroke="#38bdf8"
+    stroke-width="2.5"
+    stroke-dasharray="4 6"
+    opacity="0.4"
+  />
+</svg>

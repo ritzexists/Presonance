@@ -1,0 +1,6 @@
+{
+  "name": "Resonance - Intersection & Gender Vocal Analysis",
+  "description": "Academic sociophonetic and acoustic analysis platform investigating intersectional gender vocal patterns through dynamic plugins and epistemic meta-graphs.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
