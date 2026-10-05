@@ -3,6 +3,7 @@
 @layer base {
   body {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    transition: background 0.35s ease, color 0.35s ease;
   }
   code, pre, .font-mono {
     font-family: 'JetBrains Mono', ui-monospace, monospace;
@@ -24,4 +25,437 @@
 }
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(100, 116, 139, 1);
+}
+
+/* ========================================================
+   THEME 1: Obsidian Phonetics (Default)
+   ======================================================== */
+[data-theme="slate"] {
+  --theme-glow: rgba(6, 182, 212, 0.2);
+}
+
+/* ========================================================
+   THEME 2: Baroque Cyber-Phonetics (MAXIMALIST 1)
+   Lavish imperial amethyst crushed velvet, ornate gold filigree,
+   intense starry glows, royal magenta and gilded elegance.
+   ======================================================== */
+[data-theme="baroque-maximalist"] {
+  --theme-glow: rgba(245, 158, 11, 0.35);
+  background: radial-gradient(circle at 50% -10%, #3b0764 0%, #1a0533 45%, #090214 100%) !important;
+}
+
+[data-theme="baroque-maximalist"] body {
+  background: radial-gradient(circle at 50% -10%, #3b0764 0%, #1a0533 45%, #090214 100%) !important;
+  color: #fef08a !important;
+}
+
+[data-theme="baroque-maximalist"] header,
+[data-theme="baroque-maximalist"] .bg-slate-950,
+[data-theme="baroque-maximalist"] .bg-slate-900\/80,
+[data-theme="baroque-maximalist"] .bg-slate-900\/60,
+[data-theme="baroque-maximalist"] .bg-slate-900\/95 {
+  background: linear-gradient(180deg, rgba(38, 11, 66, 0.95) 0%, rgba(18, 4, 33, 0.95) 100%) !important;
+  border-color: rgba(245, 158, 11, 0.5) !important;
+  box-shadow: 0 4px 25px rgba(245, 158, 11, 0.12), inset 0 1px 0 rgba(254, 240, 138, 0.25) !important;
+}
+
+[data-theme="baroque-maximalist"] h1,
+[data-theme="baroque-maximalist"] h2,
+[data-theme="baroque-maximalist"] .text-white {
+  color: #fffbeb !important;
+  text-shadow: 0 0 12px rgba(251, 191, 36, 0.4);
+}
+
+[data-theme="baroque-maximalist"] .border-slate-800,
+[data-theme="baroque-maximalist"] .border-slate-700 {
+  border-color: rgba(245, 158, 11, 0.35) !important;
+}
+
+[data-theme="baroque-maximalist"] .text-cyan-400,
+[data-theme="baroque-maximalist"] .text-cyan-300 {
+  color: #fbbf24 !important;
+}
+
+[data-theme="baroque-maximalist"] .bg-cyan-500 {
+  background-color: #f59e0b !important;
+  color: #1a0533 !important;
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.5) !important;
+}
+
+/* ========================================================
+   THEME 3: Y2K Cyber-Arcade Euphoria (MAXIMALIST 2)
+   Sensory overload: radioactive acid lime, hot electric magenta,
+   electric cyan, high-contrast neon borders, cyber arcade energy.
+   ======================================================== */
+[data-theme="y2k-maximalist"] {
+  --theme-glow: rgba(255, 0, 127, 0.35);
+  background: linear-gradient(135deg, #050616 0%, #16002c 40%, #001e3d 85%, #050616 100%) !important;
+}
+
+[data-theme="y2k-maximalist"] body {
+  background: linear-gradient(135deg, #050616 0%, #16002c 40%, #001e3d 85%, #050616 100%) !important;
+  color: #e0f2fe !important;
+}
+
+[data-theme="y2k-maximalist"] header,
+[data-theme="y2k-maximalist"] .bg-slate-950,
+[data-theme="y2k-maximalist"] .bg-slate-900\/80,
+[data-theme="y2k-maximalist"] .bg-slate-900\/60,
+[data-theme="y2k-maximalist"] .bg-slate-900\/95 {
+  background: rgba(8, 5, 25, 0.92) !important;
+  border-color: #ff007f !important;
+  box-shadow: 0 0 20px rgba(255, 0, 127, 0.25), inset 0 0 12px rgba(0, 240, 255, 0.2) !important;
+}
+
+[data-theme="y2k-maximalist"] .border-slate-800,
+[data-theme="y2k-maximalist"] .border-slate-700 {
+  border-color: rgba(255, 0, 127, 0.45) !important;
+}
+
+[data-theme="y2k-maximalist"] .text-cyan-400,
+[data-theme="y2k-maximalist"] .text-cyan-300 {
+  color: #a3e635 !important;
+  text-shadow: 0 0 8px rgba(163, 230, 53, 0.6);
+}
+
+[data-theme="y2k-maximalist"] .text-white {
+  color: #ffffff !important;
+  text-shadow: 1px 0 #ff007f, -1px 0 #00f0ff;
+}
+
+[data-theme="y2k-maximalist"] .bg-cyan-500 {
+  background: linear-gradient(90deg, #ff007f 0%, #00f0ff 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 18px rgba(255, 0, 127, 0.6) !important;
+}
+
+/* ========================================================
+   THEME 4: Rubber Ducky Conservatory (HUMOROUS)
+   Quack formants & comic pop! 100% peer-quacked acoustics,
+   duckling yellow, comic bubble drop shadows & playful honk vibes.
+   ======================================================== */
+[data-theme="duck-quack"] {
+  --theme-glow: rgba(250, 204, 21, 0.35);
+  background: radial-gradient(circle at 50% 0%, #0c2340 0%, #082f49 45%, #020b14 100%) !important;
+}
+
+[data-theme="duck-quack"] body {
+  background: radial-gradient(circle at 50% 0%, #0c2340 0%, #082f49 45%, #020b14 100%) !important;
+  color: #fef08a !important;
+}
+
+[data-theme="duck-quack"] header,
+[data-theme="duck-quack"] .bg-slate-950,
+[data-theme="duck-quack"] .bg-slate-900\/80,
+[data-theme="duck-quack"] .bg-slate-900\/60,
+[data-theme="duck-quack"] .bg-slate-900\/95 {
+  background: rgba(9, 27, 49, 0.95) !important;
+  border-color: #facc15 !important;
+  border-width: 2px !important;
+  box-shadow: 4px 4px 0px #ca8a04 !important;
+  border-radius: 0.85rem !important;
+}
+
+[data-theme="duck-quack"] .border-slate-800,
+[data-theme="duck-quack"] .border-slate-700 {
+  border-color: #facc15 !important;
+}
+
+[data-theme="duck-quack"] .text-cyan-400,
+[data-theme="duck-quack"] .text-cyan-300 {
+  color: #facc15 !important;
+  font-weight: 700;
+}
+
+[data-theme="duck-quack"] .bg-cyan-500 {
+  background-color: #facc15 !important;
+  color: #422006 !important;
+  font-weight: 800 !important;
+  border: 2px solid #ca8a04 !important;
+  box-shadow: 3px 3px 0px #ca8a04 !important;
+}
+
+[data-theme="duck-quack"] button:hover {
+  transform: translateY(-2px) scale(1.02) rotate(-0.5deg);
+}
+
+[data-theme="duck-quack"] .group:hover img {
+  animation: duck-waddle 0.45s ease-in-out infinite alternate;
+}
+
+@keyframes duck-waddle {
+  0% { transform: rotate(-5deg) translateY(-1px); }
+  100% { transform: rotate(5deg) translateY(1px); }
+}
+
+/* ========================================================
+   THEME 5: Synthwave 1984 (Retro Outrun)
+   Neon flamingo fuchsia, sunset amber gradient, deep outrun grid.
+   ======================================================== */
+[data-theme="synthwave-84"] {
+  --theme-glow: rgba(236, 72, 153, 0.35);
+  background: linear-gradient(180deg, #1f0233 0%, #120021 50%, #07000f 100%) !important;
+}
+
+[data-theme="synthwave-84"] body {
+  background: linear-gradient(180deg, #1f0233 0%, #120021 50%, #07000f 100%) !important;
+  color: #fce7f3 !important;
+}
+
+[data-theme="synthwave-84"] header,
+[data-theme="synthwave-84"] .bg-slate-950,
+[data-theme="synthwave-84"] .bg-slate-900\/80,
+[data-theme="synthwave-84"] .bg-slate-900\/60,
+[data-theme="synthwave-84"] .bg-slate-900\/95 {
+  background: rgba(22, 2, 38, 0.94) !important;
+  border-color: rgba(236, 72, 153, 0.55) !important;
+  box-shadow: 0 0 20px rgba(236, 72, 153, 0.25), inset 0 0 10px rgba(168, 85, 247, 0.15) !important;
+}
+
+[data-theme="synthwave-84"] .border-slate-800,
+[data-theme="synthwave-84"] .border-slate-700 {
+  border-color: rgba(236, 72, 153, 0.35) !important;
+}
+
+[data-theme="synthwave-84"] .text-cyan-400,
+[data-theme="synthwave-84"] .text-cyan-300 {
+  color: #f472b6 !important;
+}
+
+[data-theme="synthwave-84"] .bg-cyan-500 {
+  background: linear-gradient(90deg, #f43f5e 0%, #ec4899 50%, #8b5cf6 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 18px rgba(244, 63, 94, 0.55) !important;
+}
+
+/* ========================================================
+   THEME 6: Amber CRT Terminal (Vintage Monochrome Phosphor)
+   1978 glowing cathode ray tube amber phosphor scanlines.
+   ======================================================== */
+[data-theme="phosphor-amber"] {
+  --theme-glow: rgba(245, 158, 11, 0.4);
+  background: #0d0802 !important;
+}
+
+[data-theme="phosphor-amber"] body {
+  background: #0d0802 !important;
+  color: #fbbf24 !important;
+}
+
+[data-theme="phosphor-amber"] header,
+[data-theme="phosphor-amber"] .bg-slate-950,
+[data-theme="phosphor-amber"] .bg-slate-900\/80,
+[data-theme="phosphor-amber"] .bg-slate-900\/60,
+[data-theme="phosphor-amber"] .bg-slate-900\/95 {
+  background: rgba(20, 11, 3, 0.95) !important;
+  border-color: rgba(245, 158, 11, 0.5) !important;
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.2), inset 0 0 8px rgba(245, 158, 11, 0.1) !important;
+}
+
+[data-theme="phosphor-amber"] .border-slate-800,
+[data-theme="phosphor-amber"] .border-slate-700 {
+  border-color: rgba(217, 119, 6, 0.4) !important;
+}
+
+[data-theme="phosphor-amber"] .text-cyan-400,
+[data-theme="phosphor-amber"] .text-cyan-300,
+[data-theme="phosphor-amber"] .text-white {
+  color: #fde68a !important;
+  text-shadow: 0 0 8px rgba(245, 158, 11, 0.6);
+}
+
+[data-theme="phosphor-amber"] .bg-cyan-500 {
+  background-color: #f59e0b !important;
+  color: #1c0e02 !important;
+  font-weight: 700 !important;
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.6) !important;
+}
+
+/* ========================================================
+   THEME 7: Alabaster Scientific (CLEAN LIGHT THEME)
+   Crisp high-contrast editorial research paper layout,
+   pure alabaster surfaces, refined typography & cobalt accents.
+   ======================================================== */
+[data-theme="alabaster-light"] {
+  --theme-glow: rgba(2, 132, 199, 0.15);
+  background: #f8fafc !important;
+}
+
+[data-theme="alabaster-light"] body {
+  background: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+[data-theme="alabaster-light"] header,
+[data-theme="alabaster-light"] .bg-slate-950,
+[data-theme="alabaster-light"] .bg-slate-950\/60,
+[data-theme="alabaster-light"] .bg-slate-950\/85,
+[data-theme="alabaster-light"] .bg-slate-900,
+[data-theme="alabaster-light"] .bg-slate-900\/80,
+[data-theme="alabaster-light"] .bg-slate-900\/60,
+[data-theme="alabaster-light"] .bg-slate-900\/90,
+[data-theme="alabaster-light"] .bg-slate-900\/95 {
+  background: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.04) !important;
+}
+
+[data-theme="alabaster-light"] h1,
+[data-theme="alabaster-light"] h2,
+[data-theme="alabaster-light"] h3,
+[data-theme="alabaster-light"] h4,
+[data-theme="alabaster-light"] .text-white {
+  color: #0f172a !important;
+  text-shadow: none !important;
+}
+
+[data-theme="alabaster-light"] .text-slate-100,
+[data-theme="alabaster-light"] .text-slate-200 {
+  color: #1e293b !important;
+}
+
+[data-theme="alabaster-light"] .text-slate-300 {
+  color: #334155 !important;
+}
+
+[data-theme="alabaster-light"] .text-slate-400 {
+  color: #64748b !important;
+}
+
+[data-theme="alabaster-light"] .border-slate-800,
+[data-theme="alabaster-light"] .border-slate-700,
+[data-theme="alabaster-light"] .border-slate-800\/60,
+[data-theme="alabaster-light"] .border-slate-800\/80 {
+  border-color: #e2e8f0 !important;
+}
+
+[data-theme="alabaster-light"] .bg-slate-800 {
+  background-color: #f1f5f9 !important;
+  color: #1e293b !important;
+}
+
+[data-theme="alabaster-light"] .text-cyan-400,
+[data-theme="alabaster-light"] .text-cyan-300 {
+  color: #0284c7 !important;
+}
+
+[data-theme="alabaster-light"] .bg-cyan-500 {
+  background-color: #0284c7 !important;
+  color: #ffffff !important;
+  box-shadow: 0 1px 2px rgba(2, 132, 199, 0.25) !important;
+}
+
+[data-theme="alabaster-light"] .bg-cyan-500\/20 {
+  background-color: rgba(2, 132, 199, 0.12) !important;
+  color: #0284c7 !important;
+}
+
+[data-theme="alabaster-light"] .border-cyan-500\/40,
+[data-theme="alabaster-light"] .border-cyan-500\/50 {
+  border-color: rgba(2, 132, 199, 0.3) !important;
+}
+
+[data-theme="alabaster-light"] select {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* ========================================================
+   THEME 8: Silly Goose Meadow (HUMOROUS LIGHT THEME)
+   Honk-powered light mode! Sunny pastel buttercup pastures,
+   cartoonish honey borders, comic drop shadows & playful orange bill accents.
+   ======================================================== */
+[data-theme="silly-goose-light"] {
+  --theme-glow: rgba(245, 158, 11, 0.3);
+  background: #fefce8 !important;
+}
+
+[data-theme="silly-goose-light"] body {
+  background: #fefce8 !important;
+  color: #292524 !important;
+}
+
+[data-theme="silly-goose-light"] header,
+[data-theme="silly-goose-light"] .bg-slate-950,
+[data-theme="silly-goose-light"] .bg-slate-950\/60,
+[data-theme="silly-goose-light"] .bg-slate-950\/85,
+[data-theme="silly-goose-light"] .bg-slate-900,
+[data-theme="silly-goose-light"] .bg-slate-900\/80,
+[data-theme="silly-goose-light"] .bg-slate-900\/60,
+[data-theme="silly-goose-light"] .bg-slate-900\/90,
+[data-theme="silly-goose-light"] .bg-slate-900\/95 {
+  background: #ffffff !important;
+  border: 2px solid #f59e0b !important;
+  box-shadow: 3px 3px 0px #fbbf24 !important;
+  border-radius: 0.75rem !important;
+}
+
+[data-theme="silly-goose-light"] h1,
+[data-theme="silly-goose-light"] h2,
+[data-theme="silly-goose-light"] h3,
+[data-theme="silly-goose-light"] h4,
+[data-theme="silly-goose-light"] .text-white {
+  color: #1c1917 !important;
+  text-shadow: none !important;
+}
+
+[data-theme="silly-goose-light"] .text-slate-100,
+[data-theme="silly-goose-light"] .text-slate-200 {
+  color: #292524 !important;
+}
+
+[data-theme="silly-goose-light"] .text-slate-300 {
+  color: #44403c !important;
+}
+
+[data-theme="silly-goose-light"] .text-slate-400 {
+  color: #78716c !important;
+}
+
+[data-theme="silly-goose-light"] .border-slate-800,
+[data-theme="silly-goose-light"] .border-slate-700,
+[data-theme="silly-goose-light"] .border-slate-800\/60,
+[data-theme="silly-goose-light"] .border-slate-800\/80 {
+  border-color: #fde68a !important;
+}
+
+[data-theme="silly-goose-light"] .bg-slate-800 {
+  background-color: #fef9c3 !important;
+  color: #451a03 !important;
+}
+
+[data-theme="silly-goose-light"] .text-cyan-400,
+[data-theme="silly-goose-light"] .text-cyan-300 {
+  color: #ea580c !important;
+  font-weight: 700;
+}
+
+[data-theme="silly-goose-light"] .bg-cyan-500 {
+  background-color: #f97316 !important;
+  color: #ffffff !important;
+  font-weight: 800 !important;
+  border: 2px solid #c2410c !important;
+  box-shadow: 2px 2px 0px #c2410c !important;
+}
+
+[data-theme="silly-goose-light"] .bg-cyan-500\/20 {
+  background-color: rgba(254, 240, 138, 0.6) !important;
+  color: #9a3412 !important;
+  border-color: #f59e0b !important;
+}
+
+[data-theme="silly-goose-light"] .border-cyan-500\/40,
+[data-theme="silly-goose-light"] .border-cyan-500\/50 {
+  border-color: #f59e0b !important;
+}
+
+[data-theme="silly-goose-light"] select {
+  background-color: #ffffff !important;
+  color: #1c1917 !important;
+  border: 2px solid #f59e0b !important;
+}
+
+[data-theme="silly-goose-light"] button:hover {
+  transform: translateY(-1px) scale(1.02);
 }

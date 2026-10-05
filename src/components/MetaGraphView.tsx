@@ -54,7 +54,10 @@ export const MetaGraphView: React.FC = () => {
     activePluginIds,
     selectedMetaNode,
     selectMetaNode,
+    currentThemeId,
   } = useAppStore();
+
+  const isLight = currentThemeId === 'alabaster-light' || currentThemeId === 'silly-goose-light';
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -139,7 +142,10 @@ export const MetaGraphView: React.FC = () => {
         // Clamp minimum distance to prevent explosive repulsive spikes
         const dist = Math.max(45, Math.sqrt(distSq));
 
-        if (dist < 340) {
+        // Dynamic repulsion cutoff distance scales with repulsion strength
+        const maxRepulsionDistance = Math.max(360, Math.min(1600, Math.sqrt(currentRepulsion) * 20));
+
+        if (dist < maxRepulsionDistance) {
           const repForce = (currentRepulsion / (dist * dist)) * alpha;
           const fx = (dx / dist) * repForce;
           const fy = (dy / dist) * repForce;
@@ -377,13 +383,13 @@ export const MetaGraphView: React.FC = () => {
       ctx.lineTo(link.target.x, link.target.y);
 
       if (isConnectedToSelected || isConnectedToHovered) {
-        ctx.strokeStyle = '#38bdf8';
+        ctx.strokeStyle = isLight ? '#0284c7' : '#38bdf8';
         ctx.lineWidth = 2.2 / scale;
       } else if (isSrcMatch && isTgtMatch) {
-        ctx.strokeStyle = 'rgba(71, 85, 105, 0.45)';
+        ctx.strokeStyle = isLight ? 'rgba(100, 116, 139, 0.4)' : 'rgba(71, 85, 105, 0.45)';
         ctx.lineWidth = 1.2 / scale;
       } else {
-        ctx.strokeStyle = 'rgba(51, 65, 85, 0.15)';
+        ctx.strokeStyle = isLight ? 'rgba(203, 213, 225, 0.35)' : 'rgba(51, 65, 85, 0.15)';
         ctx.lineWidth = 0.8 / scale;
       }
       ctx.stroke();
@@ -393,7 +399,7 @@ export const MetaGraphView: React.FC = () => {
         const midX = (link.source.x + link.target.x) / 2;
         const midY = (link.source.y + link.target.y) / 2;
         ctx.font = `${Math.max(8, 10 / scale)}px "JetBrains Mono", monospace`;
-        ctx.fillStyle = isConnectedToSelected ? '#38bdf8' : '#64748b';
+        ctx.fillStyle = isConnectedToSelected ? (isLight ? '#0284c7' : '#38bdf8') : (isLight ? '#475569' : '#64748b');
         ctx.textAlign = 'center';
         ctx.fillText(link.label, midX, midY - 3);
       }
@@ -419,23 +425,23 @@ export const MetaGraphView: React.FC = () => {
       if (isSelected || isHovered) {
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.radius + 7, 0, Math.PI * 2);
-        ctx.fillStyle = node.color ? `${node.color}44` : 'rgba(56, 189, 248, 0.25)';
+        ctx.fillStyle = node.color ? `${node.color}44` : (isLight ? 'rgba(2, 132, 199, 0.25)' : 'rgba(56, 189, 248, 0.25)');
         ctx.fill();
       } else if (isNeighbor) {
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.radius + 4, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(56, 189, 248, 0.2)';
+        ctx.fillStyle = isLight ? 'rgba(2, 132, 199, 0.2)' : 'rgba(56, 189, 248, 0.2)';
         ctx.fill();
       }
 
       ctx.beginPath();
       ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-      ctx.fillStyle = isMatch ? (node.color || '#94a3b8') : 'rgba(51, 65, 85, 0.5)';
+      ctx.fillStyle = isMatch ? (node.color || '#94a3b8') : (isLight ? 'rgba(203, 213, 225, 0.6)' : 'rgba(51, 65, 85, 0.5)');
       ctx.fill();
 
       // Border ring
       ctx.lineWidth = isSelected ? 2.5 / scale : isNeighbor ? 2 / scale : 1.5 / scale;
-      ctx.strokeStyle = isSelected ? '#ffffff' : isNeighbor ? '#38bdf8' : '#0f172a';
+      ctx.strokeStyle = isSelected ? '#ffffff' : isNeighbor ? (isLight ? '#0284c7' : '#38bdf8') : (isLight ? '#cbd5e1' : '#0f172a');
       ctx.stroke();
 
       // Group Glyph inside node
@@ -455,7 +461,9 @@ export const MetaGraphView: React.FC = () => {
 
       // Label below node
       ctx.font = `${Math.max(9, 11 / scale)}px "Plus Jakarta Sans", sans-serif`;
-      ctx.fillStyle = isMatch ? (isSelected || isNeighbor ? '#38bdf8' : '#f1f5f9') : '#64748b';
+      ctx.fillStyle = isMatch
+        ? (isSelected || isNeighbor ? (isLight ? '#0284c7' : '#38bdf8') : (isLight ? '#1e293b' : '#f1f5f9'))
+        : (isLight ? '#94a3b8' : '#64748b');
       ctx.textBaseline = 'top';
       ctx.fillText(node.label, node.x, node.y + node.radius + 4);
     });
@@ -785,21 +793,21 @@ export const MetaGraphView: React.FC = () => {
               </span>
             </div>
             {/* Toggles */}
-            <div className="grid grid-cols-3 gap-1 bg-slate-950 p-0.5 rounded-lg border border-slate-800 text-[11px]">
+            <div className="grid grid-cols-4 gap-1 bg-slate-950 p-0.5 rounded-lg border border-slate-800 text-[10px]">
               <button
-                onClick={() => updatePhysics({ repulsion: 380 })}
+                onClick={() => updatePhysics({ repulsion: 250 })}
                 className={`py-1 rounded font-medium transition-colors ${
-                  physics.repulsion <= 450
+                  physics.repulsion <= 400
                     ? 'bg-purple-500/20 text-purple-300 border border-purple-500/30'
                     : 'text-slate-400 hover:text-slate-200'
                 }`}
               >
-                Compact
+                Tight
               </button>
               <button
                 onClick={() => updatePhysics({ repulsion: 650 })}
                 className={`py-1 rounded font-medium transition-colors ${
-                  physics.repulsion > 450 && physics.repulsion < 950
+                  physics.repulsion > 400 && physics.repulsion < 1400
                     ? 'bg-purple-500/20 text-purple-300 border border-purple-500/30'
                     : 'text-slate-400 hover:text-slate-200'
                 }`}
@@ -807,22 +815,32 @@ export const MetaGraphView: React.FC = () => {
                 Balanced
               </button>
               <button
-                onClick={() => updatePhysics({ repulsion: 1150 })}
+                onClick={() => updatePhysics({ repulsion: 2400 })}
                 className={`py-1 rounded font-medium transition-colors ${
-                  physics.repulsion >= 950
+                  physics.repulsion >= 1400 && physics.repulsion < 4000
                     ? 'bg-purple-500/20 text-purple-300 border border-purple-500/30'
                     : 'text-slate-400 hover:text-slate-200'
                 }`}
               >
                 Wide
               </button>
+              <button
+                onClick={() => updatePhysics({ repulsion: 5500 })}
+                className={`py-1 rounded font-medium transition-colors ${
+                  physics.repulsion >= 4000
+                    ? 'bg-purple-500/20 text-purple-300 border border-purple-500/30'
+                    : 'text-slate-400 hover:text-slate-200'
+                }`}
+              >
+                Ultra
+              </button>
             </div>
-            {/* Slider */}
+            {/* Slider with wide 50 to 8000 range */}
             <input
               type="range"
-              min="200"
-              max="1500"
-              step="25"
+              min="50"
+              max="8000"
+              step="50"
               value={physics.repulsion}
               onChange={(e) => updatePhysics({ repulsion: parseFloat(e.target.value) })}
               className="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-purple-400"
@@ -888,19 +906,25 @@ export const MetaGraphView: React.FC = () => {
             <div className="flex items-center gap-1.5">
               <button
                 onClick={() => updatePhysics({ spring: 0.02, repulsion: 650, damping: 0.68 })}
-                className="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors"
+                className="px-1.5 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors"
               >
                 Default
               </button>
               <button
-                onClick={() => updatePhysics({ spring: 0.015, repulsion: 1100, damping: 0.72 })}
-                className="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors"
+                onClick={() => updatePhysics({ spring: 0.015, repulsion: 2400, damping: 0.70 })}
+                className="px-1.5 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors"
               >
                 Spacious
               </button>
               <button
-                onClick={() => updatePhysics({ spring: 0.035, repulsion: 380, damping: 0.58 })}
-                className="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors"
+                onClick={() => updatePhysics({ spring: 0.010, repulsion: 5500, damping: 0.72 })}
+                className="px-1.5 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors"
+              >
+                Ultra-Wide
+              </button>
+              <button
+                onClick={() => updatePhysics({ spring: 0.035, repulsion: 200, damping: 0.58 })}
+                className="px-1.5 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors"
               >
                 Compact
               </button>

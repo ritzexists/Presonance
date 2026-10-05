@@ -14,8 +14,8 @@ export default defineConfig(() => {
         includeAssets: ['apple-touch-icon.png', 'icon.svg'],
         manifest: {
           id: '/',
-          name: 'Resonance - Intersectional Voice Analysis',
-          short_name: 'Resonance',
+          name: 'Presonance - Intersectional Voice Analysis',
+          short_name: 'Presonance',
           description:
             'Academic sociophonetic and acoustic analysis platform for intersectional gender vocal patterns.',
           theme_color: '#090d16',

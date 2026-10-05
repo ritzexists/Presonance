@@ -8,11 +8,35 @@ import { IVoicePlugin, MetaNode, AudioInputSource } from '../types';
 import { BASE_PLUGINS, globalPluginRegistry } from '../plugins';
 import { globalAudioEngine } from '../services/audioEngine';
 
+export type ThemeId =
+  | 'slate'
+  | 'baroque-maximalist'
+  | 'y2k-maximalist'
+  | 'duck-quack'
+  | 'synthwave-84'
+  | 'phosphor-amber'
+  | 'alabaster-light'
+  | 'silly-goose-light';
+
+export const THEME_IDS: ThemeId[] = [
+  'slate',
+  'baroque-maximalist',
+  'y2k-maximalist',
+  'duck-quack',
+  'synthwave-84',
+  'phosphor-amber',
+  'alabaster-light',
+  'silly-goose-light',
+];
+
 interface AppState {
   currentView: 'dashboard' | 'meta';
   registeredPlugins: IVoicePlugin[];
   activePluginIds: string[];
   selectedMetaNode: MetaNode | null;
+
+  // Visual Theme State
+  currentThemeId: ThemeId;
 
   // Audio Engine State
   isAudioRunning: boolean;
@@ -35,6 +59,8 @@ interface AppState {
   setJupyterModalOpen: (open: boolean) => void;
   togglePluginActive: (pluginId: string) => void;
   selectMetaNode: (node: MetaNode | null) => void;
+  cycleTheme: () => void;
+  setTheme: (themeId: ThemeId) => void;
   startAudio: () => Promise<boolean>;
   stopAudio: () => void;
   toggleAudio: () => Promise<void>;
@@ -74,6 +100,9 @@ export const useAppStore = create<AppState>((set, get) => {
     activePluginIds: BASE_PLUGINS.map((p) => p.id),
     selectedMetaNode: null,
 
+    // Initial theme: slate
+    currentThemeId: 'slate',
+
     isAudioRunning: false,
     inputSource: 'sample',
     activePresetId: 'preset_zimman',
@@ -87,6 +116,27 @@ export const useAppStore = create<AppState>((set, get) => {
 
     setView: (view) => set({ currentView: view }),
     setJupyterModalOpen: (open) => set({ isJupyterModalOpen: open }),
+
+    cycleTheme: () => {
+      const { currentThemeId } = get();
+      const currentIndex = THEME_IDS.indexOf(currentThemeId);
+      const nextIndex = (currentIndex + 1) % THEME_IDS.length;
+      const nextThemeId = THEME_IDS[nextIndex];
+
+      if (typeof document !== 'undefined') {
+        document.documentElement.setAttribute('data-theme', nextThemeId);
+      }
+
+      set({ currentThemeId: nextThemeId });
+    },
+
+    setTheme: (themeId: ThemeId) => {
+      const targetThemeId = THEME_IDS.includes(themeId) ? themeId : THEME_IDS[0];
+      if (typeof document !== 'undefined') {
+        document.documentElement.setAttribute('data-theme', targetThemeId);
+      }
+      set({ currentThemeId: targetThemeId });
+    },
 
     togglePluginActive: (pluginId) => {
       const { activePluginIds } = get();
